@@ -8,6 +8,7 @@ export default function Game() {
   const [selectionX, setSelectionX] = useState(0)
   const [selectionY, setSelectionY] = useState(0)
   const [selectionShown, setSelectionShown] = useState(false)
+  const [currentGuess, setCurrentGuess] = useState(null)
 
   function clickHandler(e){
     const rect = e.target.getBoundingClientRect()
@@ -16,10 +17,9 @@ export default function Game() {
     setSelectionX(x - 110)
     setSelectionY(y - 50)
     setSelectionShown(!selectionShown)
-    console.log("Left: " + x + " Top: " + y)
+    setCurrentGuess([x, y])
 
   }
-
   return (
     <div className='game'>
         <Header></Header>
@@ -29,6 +29,7 @@ export default function Game() {
           <Selection selectionX={selectionX}
           selectionY={selectionY}
           selectionShown={selectionShown}
+          currentGuess = {currentGuess}
           ></Selection>
         </div>
     </div>
