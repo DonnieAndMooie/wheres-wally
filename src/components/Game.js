@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Scene from '../images/airport-scene.png'
@@ -31,6 +31,12 @@ export default function Game() {
     setCurrentGuess([percentX, percentY])
 
   }
+
+  useEffect(() => {
+    if(Object.values(charactersFound).every(value => value === true)){
+      alert("You completed the level!")
+    }
+  }, [charactersFound])
   return (
     <div className='game'>
         <Header></Header>
