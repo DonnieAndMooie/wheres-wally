@@ -9,27 +9,41 @@ export default function Game() {
   const [selectionY, setSelectionY] = useState(0)
   const [selectionShown, setSelectionShown] = useState(false)
   const [currentGuess, setCurrentGuess] = useState(null)
+  const [charactersFound, setCharactersFound] = useState({
+    wally: false,
+    wenda: false,
+    odlaw: false,
+    wizard: false
+  })
 
   function clickHandler(e){
     const rect = e.target.getBoundingClientRect()
-    const x = Math.round(e.clientX - rect.left)
-    const y = Math.round(e.clientY - rect.top)
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const imageWidth = e.target.clientWidth
+    const imageHeight = e.target.clientHeight
+    const percentX = Math.round(((x / imageWidth) * 100) * 100) / 100
+    const percentY = Math.round(((y / imageHeight) * 100) * 100) / 100
+    console.log(percentX + " " + percentY)
     setSelectionX(x - 110)
     setSelectionY(y - 50)
     setSelectionShown(!selectionShown)
-    setCurrentGuess([x, y])
+    setCurrentGuess([percentX, percentY])
 
   }
   return (
     <div className='game'>
         <Header></Header>
-        <Sidebar></Sidebar>
-        <div className={`scene-div ${selectionShown ? "" : "pointer"}`}>
-          <img src={Scene} alt="Airport Scene" onClick={(e) => clickHandler(e)} />
+        <Sidebar charactersFound={charactersFound}></Sidebar>
+        <div className={"scene-div"}>
+          <img src={Scene} alt="Airport Scene" onClick={(e) => clickHandler(e)} className={selectionShown ? "" : "pointer"} />
           <Selection selectionX={selectionX}
           selectionY={selectionY}
           selectionShown={selectionShown}
           currentGuess = {currentGuess}
+          setSelectionShown={setSelectionShown}
+          setCharactersFound={setCharactersFound}
+          charactersFound={charactersFound}
           ></Selection>
         </div>
     </div>

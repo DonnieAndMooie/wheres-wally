@@ -130,3 +130,8 @@ h2::selection{
 .pointer{
     cursor: pointer
 }
+
+.found{
+    filter: opacity(0.3);
+    text-decoration: line-through;
+}
