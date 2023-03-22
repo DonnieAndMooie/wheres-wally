@@ -21,6 +21,7 @@ export default function Game() {
 
   const [positions, setPositions] = useState()
   const [loading, setLoading] = useState(true)
+  const [gameOver, setGameOver] = useState(false)
 
   useEffect(() => {
     async function fetchData(){
@@ -70,12 +71,12 @@ export default function Game() {
 
   useEffect(() => {
     if(Object.values(charactersFound).every(value => value === true)){
-      alert("You completed the level!")
+      setGameOver(true)
     }
   }, [charactersFound])
   return (
     <div className='game'>
-        <Header></Header>
+        <Header gameOver={gameOver}></Header>
         <Sidebar charactersFound={charactersFound}></Sidebar>
         <div className={"scene-div"}>
           <img src={Scene} alt="Airport Scene" onClick={(e) => clickHandler(e)} className={`scene ${selectionShown ? "" : "pointer"}`}/>
