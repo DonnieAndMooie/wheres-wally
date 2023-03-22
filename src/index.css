@@ -80,7 +80,7 @@ h2::selection{
     left: 0;
 }
 
-.scene-div img {
+.scene{
     width: 88%;
     position: relative;
     top: 0;
@@ -134,4 +134,11 @@ h2::selection{
 .found{
     filter: opacity(0.3);
     text-decoration: line-through;
+}
+
+.red-circle{
+    height: 28px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

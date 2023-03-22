@@ -1,7 +1,4 @@
-import React from 'react'
 import Icon from '../images/dashed-circle.svg'
-import { db } from '../Firebase'
-import { doc, getDoc } from 'firebase/firestore'
 
 export default function Selection({selectionX,
                                     selectionY,
@@ -9,13 +6,15 @@ export default function Selection({selectionX,
                                     currentGuess,
                                     setSelectionShown,
                                     setCharactersFound,
-                                    charactersFound}) {
+                                    charactersFound,
+                                    positions}) {
+                    
   async function handleGuess(guess, character){
+    console.log(positions)
     setSelectionShown(false)
     console.log(character + " " + guess)
-    const docRef = doc(db, "levels", "airport")
-    const docSnap = await getDoc(docRef)
-    const characterPosition = docSnap.data()[character]
+
+    const characterPosition = positions[character]
     if (characterPosition[0] - guess[0] < 0.5 &&
         characterPosition[0] - guess[0] > -0.5 &&
         characterPosition[1] - guess[1] < 0.5 &&
@@ -23,7 +22,6 @@ export default function Selection({selectionX,
       ){
       setCharactersFound({...charactersFound, [character]: true})
     }
-    
   }
   
   return (
