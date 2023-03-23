@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Form from './Form'
-import Scene from '../images/airport-scene.png'
 import Selection from './Selection'
 import RedCircle from '../images/red-circle.svg'
 import { db } from '../Firebase'
 import { doc, getDoc } from 'firebase/firestore'
 
-export default function Game() {
+export default function Game({level, setLevel, imgSrc}) {
   const [selectionX, setSelectionX] = useState(0)
   const [selectionY, setSelectionY] = useState(0)
   const [selectionShown, setSelectionShown] = useState(false)
@@ -27,7 +26,7 @@ export default function Game() {
   useEffect(() => {
     async function fetchData(){
       try{
-        const docRef = doc(db, "levels", "airport")
+        const docRef = doc(db, "levels", level)
         const docSnap = await getDoc(docRef)
         setPositions(docSnap.data())
         setLoading(false)
@@ -79,7 +78,7 @@ export default function Game() {
     const timeCompleted = document.querySelector(".timer").textContent
     return(
       <div>
-        <Form timeCompleted={timeCompleted}></Form>
+        <Form timeCompleted={timeCompleted} level={level} setLevel={setLevel}></Form>
       </div>
     )
   }
@@ -89,7 +88,7 @@ export default function Game() {
         <Header gameOver={gameOver}></Header>
         <Sidebar charactersFound={charactersFound}></Sidebar>
         <div className={"scene-div"}>
-          <img src={Scene} alt="Airport Scene" onClick={(e) => clickHandler(e)} className={`scene ${selectionShown ? "" : "pointer"}`}/>
+          <img src={imgSrc} alt="Scene" onClick={(e) => clickHandler(e)} className={`scene ${selectionShown ? "" : "pointer"}`}/>
           <Selection selectionX={selectionX}
           selectionY={selectionY}
           selectionShown={selectionShown}

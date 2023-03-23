@@ -3,7 +3,7 @@ import { db } from '../Firebase'
 import React, { useEffect, useState } from 'react'
 import Header from './Header'
 
-export default function Leaderboard() {
+export default function Leaderboard({level, setLevel}) {
   const [leaderboardData, setLeaderboardData] = useState([])
 
 
@@ -35,7 +35,7 @@ export default function Leaderboard() {
       setLeaderboardData(sortArray(array))
     }
 
-    const unsub = onSnapshot(doc(db, "leaderboards", "airport"), (doc) => {
+    const unsub = onSnapshot(doc(db, "leaderboards", level), (doc) => {
       const data = doc.data()
       createArrayFromData(data)
     })
@@ -49,6 +49,7 @@ export default function Leaderboard() {
         <h1 className='leaderboard-header'>Leaderboard</h1>
         {leaderboardData.map((item, i) => <div className='leaderboard-item' key={i}>
           <p className="player">{item[0]}</p>: <p className="time">{item[1]}</p></div>)}
+          <button className="return" onClick={() => setLevel("menu")}>Return to Menu</button>
     </div>
     </div>
     

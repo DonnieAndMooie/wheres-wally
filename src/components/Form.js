@@ -4,21 +4,21 @@ import Leaderboard from './Leaderboard'
 import { db } from '../Firebase'
 import { doc, setDoc } from 'firebase/firestore'
 
-export default function Form({timeCompleted}) {
+export default function Form({timeCompleted, level, setLevel}) {
     const [submitted, setSubmitted] = useState(false)
 
     async function submitHandler(e){
         e.preventDefault()
         setSubmitted(true)
         const inputtedName = document.getElementById("name").value
-        await setDoc(doc(db, "leaderboards", "airport"), {
+        await setDoc(doc(db, "leaderboards", level), {
             [inputtedName]: timeCompleted
         }, {merge: true})
     }
 
     if (submitted){
         return(
-            <Leaderboard></Leaderboard>
+            <Leaderboard level={level} setLevel={setLevel}></Leaderboard>
         )
     }
     else{

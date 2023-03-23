@@ -215,3 +215,42 @@ input{
 .leaderboard-header{
     font-family: "Josefin-sans", sans-serif;
 }
+
+.level-select{
+    padding: 30px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.level img{
+    width: 400px;
+}
+
+.level{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Edu", sans-serif;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.level-select-header{
+    text-align: center;
+    margin-top: 80px;
+    font-size: 32px;
+    font-family: "Josefin-sans", sans-serif;
+}
+
+.return{
+    padding: 15px 25px;
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    font-family: "Josefin-sans", sans-serif;
+    margin-top: 15px;
+}
