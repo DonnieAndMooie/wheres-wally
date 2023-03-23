@@ -10,9 +10,7 @@ export default function Selection({selectionX,
                                     positions}) {
                     
   async function handleGuess(guess, character){
-    console.log(positions)
     setSelectionShown(false)
-    console.log(character + " " + guess)
 
     const characterPosition = positions[character]
     if (characterPosition[0] - guess[0] < 0.5 &&

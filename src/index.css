@@ -3,6 +3,16 @@
     src: url("./fonts/RampartOne-Regular.ttf");
 }
 
+@font-face {
+    font-family: "Edu";
+    src: url("./fonts/EduNSWACTFoundation-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "Josefin-sans";
+    src: url("./fonts/JosefinSans-VariableFont_wght.ttf");
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -141,4 +151,67 @@ h2::selection{
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.form{
+    background-color: rgb(148, 0, 0);
+    color: white;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    margin: 32px 20px;
+    padding: 30px 24px;
+    font-family: "Josefin-sans", sans-serif
+}
+
+.time,
+label{
+    font-family: "Edu", sans-serif;
+}
+
+label{
+    display: flex;
+    align-items: center;
+}
+
+input{
+    margin-left: 15px;
+    height: 32px;
+    font-size: 32px;
+    font-family: "Edu", sans-serif;
+}
+
+.submit-btn{
+    height: 32px;
+    margin-left: 12px;
+    padding: 0 10px;
+    background-color: green;
+    color: white;
+    font-family: "Josefin-sans", sans-serif;
+}
+
+.leaderboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(148,0,0);
+    color: white;
+    font-size: 2rem;
+    padding: 20px 0;
+    border-radius: 20px;
+    margin: 20px 10px;
+}
+
+.leaderboard-item{
+    display: flex;
+    gap: 20px;
+    font-family: "Edu", sans-serif;
+}
+
+.leaderboard-header{
+    font-family: "Josefin-sans", sans-serif;
 }

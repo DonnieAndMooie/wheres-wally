@@ -12,7 +12,7 @@ export default function Timer({gameOver}) {
             return
         }
         setSeconds(seconds + 1)
-        if (seconds === 61){
+        if (seconds === 59){
             setSeconds(0)
             setMinutes(minutes + 1)
         }
@@ -28,7 +28,7 @@ export default function Timer({gameOver}) {
       return () => {
         clearTimeout(timer)
     }
-  }, [minutes, seconds])
+  }, [minutes, seconds, gameOver])
 
   
 

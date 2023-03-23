@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
+import Form from './Form'
 import Scene from '../images/airport-scene.png'
 import Selection from './Selection'
 import RedCircle from '../images/red-circle.svg'
@@ -48,7 +49,7 @@ export default function Game() {
     const percentX = Math.round(((x / imageWidth) * 100) * 100) / 100
     const percentY = Math.round(((y / imageHeight) * 100) * 100) / 100
     console.log(percentX + " " + percentY)
-    setSelectionX(x - 110)
+    setSelectionX(x - 120)
     setSelectionY(y - 50)
     setSelectionShown(!selectionShown)
     setCurrentGuess([percentX, percentY])
@@ -63,7 +64,6 @@ export default function Game() {
     const image = document.querySelector(".scene")
     const imageWidth = image.clientWidth
     const imageHeight = image.clientHeight
-    console.log([decimalWidth * imageWidth, decimalHeight * imageHeight])
     return [decimalWidth * imageWidth, decimalHeight * imageHeight]
     
 
@@ -74,6 +74,16 @@ export default function Game() {
       setGameOver(true)
     }
   }, [charactersFound])
+
+  if (gameOver){
+    const timeCompleted = document.querySelector(".timer").textContent
+    return(
+      <div>
+        <Form timeCompleted={timeCompleted}></Form>
+      </div>
+    )
+  }
+  else{
   return (
     <div className='game'>
         <Header gameOver={gameOver}></Header>
@@ -100,5 +110,5 @@ export default function Game() {
           style={positions && charactersFound.wizard ? {left: convertToPixels(positions.wizard)[0] -16 + "px", top: convertToPixels(positions.wizard)[1] -10 + "px"} : {display:"none"}}/>
         </div>
     </div>
-  )
+  )}
 }
